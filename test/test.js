@@ -2,6 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const chaiHttp = require('chai-http');
 const app = require('../src/server');
+process.env.NODE_ENV = 'test';
 
 chai.use(chaiHttp);
 
@@ -11,13 +12,11 @@ describe('categories', () => {
         chai.request(app)
             .get('/api/category')
             .then(response => {
-                expect(response).to.be.an('array');
-                expect(response.length).to.equal(0);
+                expect(response.body).to.be.an('array');
+                expect(response.body.length).to.equal(0);
                 done();
             })
-            .catch((err) => {
-                throw err;
-            }
+            .catch(err => done(err));
     });
 
 });
