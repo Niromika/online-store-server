@@ -19,7 +19,9 @@ const productSchema = new Schema({
       type: ObjectId,
       required: true
   },
-  
+  url: {
+    type: String
+  }
 }, {
     toJSON: {
         transform: (doc, ret) => {

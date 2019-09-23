@@ -28,6 +28,9 @@ const userSchema = new Schema({
   bday: {
       type: Date,
       required: true,
+  },
+  isAdmin: {
+      type: Boolean
   }
 });
 

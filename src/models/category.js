@@ -11,7 +11,7 @@ const categorySchema = new Schema({
     type: String
   }
 }, {
-  collation: 'categories',
+  collection: 'categories',
   toJSON: {
     transform: (doc, ret) => {
       ret.id = ret._id;
