@@ -5,7 +5,17 @@ const categories = require('../controllers/categories');
 const apiRouter = express.Router();
 const authorization = require('./middlewares/authorization');
 const multer = require('multer');
-const upload = multer({dest: 'public'});
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public');
+    },
+    filename: (req, file, cb) => {
+        const fileArr = file.originalname.split('.');
+        cb(null, Date.now() + '.' + fileArr[fileArr.length - 1]);
+    }
+});
+const upload = multer({storage});
+
 
 apiRouter.get('/user', users.all);
 apiRouter.put('/user', users.create);

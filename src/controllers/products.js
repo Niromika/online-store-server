@@ -8,6 +8,7 @@ module.exports = {
     },
     create: (req, res) => {
         const product = new Product(req.body);
+        product.image = req.file.filename;
         product.save()
             .then(product => res.status(201).json(product))
             .catch(err => res.status(400).json(err));
